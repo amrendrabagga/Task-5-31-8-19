@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -122,84 +121,12 @@ public class EmployeeManagement {
 				break;
 				
 			case 8:
-				
-				System.out.println("ON WHICH FIELD");
-				String type = reader.readLine();
-				System.out.println("ORDER TYPE(ASC OR DESC");
-				String order = reader.readLine();
-				int flag = 0;// default is ascending
-				if (order.equals("desc"))
-					flag = 1;
-
-				switch (type) {
-
-				case "eno":
-					Comparator<Employee> comparatorEno = (Employee emp1, Employee emp2) -> emp1.getEno()
-							- emp2.getEno();
-					if (flag == 1) {
-						empList.sort(comparatorEno.reversed());
-					} else
-						empList.sort(comparatorEno);
-
-					empList.forEach(x -> System.out.println(x));
-					break;
-
-				case "ename":
-					Comparator<Employee> comparatorEname = (Employee emp1, Employee emp2) -> emp1.getEname()
-							.compareTo(emp2.getEname());
-					if (flag == 1)
-						empList.sort(comparatorEname.reversed());
-					else
-						empList.sort(comparatorEname);
-
-					empList.forEach(x -> System.out.println(x));
-					break;
-
-				case "sal":
-					Comparator<Employee> comparatorSalary = (Employee emp1,
-							Employee emp2) -> (int) (emp1.getSalary() - emp2.getSalary());
-					if (flag == 1)
-						empList.sort(comparatorSalary.reversed());
-					else
-						empList.sort(comparatorSalary);
-
-					empList.forEach(x -> System.out.println(x));
-					break;
-
-				case "desg":
-					Comparator<Employee> comparatorDesg = (Employee emp1, Employee emp2) -> emp1.getDesignation()
-							.compareTo(emp2.getDesignation());
-					if (flag == 1)
-						empList.sort(comparatorDesg.reversed());
-					else
-						empList.sort(comparatorDesg);
-
-					empList.forEach(x -> System.out.println(x));
-					break;
-
-				case "dept":
-					Comparator<Employee> comparatorDept = (Employee emp1, Employee emp2) -> emp1.getDept()
-							.compareTo(emp2.getDept());
-					if (flag == 1)
-						empList.sort(comparatorDept.reversed());
-					else
-						empList.sort(comparatorDept);
-
-					empList.forEach(x -> System.out.println(x));
-					break;
-
-				default:
-					Comparator<Employee> comparatorDefault = (Employee emp1, Employee emp2) -> emp1.getEno()
-							- emp2.getEno();
-					if (flag == 1)
-						empList.sort(comparatorDefault.reversed());
-					else
-						empList.sort(comparatorDefault);
-
-					empList.forEach(x -> System.out.println(x));
+				EmployeeSort.employeeSort(empList, reader);
 				}
+			
 			}
-		}
 		reader.close();
+		}
+		
 	}
-}
+
